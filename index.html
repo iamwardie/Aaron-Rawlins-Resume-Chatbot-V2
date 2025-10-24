@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aaron Rawlins - Digital Assistant</title>
+    <style>
+      :root {
+        --primary-bg: #f4f7f9;
+        --chat-bg: #ffffff;
+        --user-bubble-bg: #007bff;
+        --user-bubble-text: #ffffff;
+        --assistant-bubble-bg: #e9ecef;
+        --assistant-bubble-text: #333;
+        --text-color: #212529;
+        --input-bg: #fff;
+        --input-border: #ced4da;
+        --button-bg: #007bff;
+        --button-hover-bg: #0056b3;
+        --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-family);
+        background-color: var(--primary-bg);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 16px;
+        box-sizing: border-box;
+      }
+      #root {
+        width: 100%;
+        max-width: 800px;
+        height: 85vh;
+        max-height: 900px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        background-color: var(--chat-bg);
+      }
+      .chat-container {
+        flex: 1;
+        padding: 24px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      .chat-message {
+        max-width: 75%;
+        padding: 12px 18px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+        word-wrap: break-word;
+        line-height: 1.5;
+      }
+      .user {
+        background-color: var(--user-bubble-bg);
+        color: var(--user-bubble-text);
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .assistant {
+        background-color: var(--assistant-bubble-bg);
+        color: var(--assistant-bubble-text);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+      }
+      .typing-indicator {
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+      }
+      .typing-indicator span {
+        height: 8px;
+        width: 8px;
+        margin: 0 2px;
+        background-color: #ced4da;
+        border-radius: 50%;
+        display: inline-block;
+        animation: bob 1.4s infinite ease-in-out both;
+      }
+      .typing-indicator span:nth-of-type(1) { animation-delay: -0.32s; }
+      .typing-indicator span:nth-of-type(2) { animation-delay: -0.16s; }
+      @keyframes bob {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1.0); }
+      }
+      .chat-form {
+        display: flex;
+        padding: 16px;
+        border-top: 1px solid var(--input-border);
+        background-color: var(--primary-bg);
+      }
+      .chat-form input {
+        flex: 1;
+        padding: 12px 16px;
+        border: 1px solid var(--input-border);
+        border-radius: 25px;
+        font-size: 1rem;
+        margin-right: 12px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .chat-form input:focus {
+        border-color: var(--button-bg);
+      }
+      .chat-form button {
+        padding: 12px 24px;
+        border: none;
+        background-color: var(--button-bg);
+        color: white;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: background-color 0.2s;
+      }
+      .chat-form button:hover:not(:disabled) {
+        background-color: var(--button-hover-bg);
+      }
+      .chat-form button:disabled {
+        background-color: #a0c7ff;
+        cursor: not-allowed;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.26.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
